@@ -1,5 +1,4 @@
 ## Tech Stack
-
 -   **Frontend**: React (v19), TypeScript
 -   **Styling**: Tailwind CSS (v4)
 -   **Animations**: Framer Motion
