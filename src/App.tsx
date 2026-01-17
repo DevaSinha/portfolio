@@ -33,16 +33,48 @@ function App() {
     return () => window.removeEventListener('wheel', handleScroll);
   }, [handleScroll]);
 
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientY);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientY);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isSwipe = Math.abs(distance) > minSwipeDistance;
+
+    if (isSwipe) {
+      if (distance > 0) {
+        // Swipe Up (next section)
+        setActiveSection((prev) => Math.min(prev + 1, sections.length - 1));
+      } else {
+        // Swipe Down (prev section)
+        setActiveSection((prev) => Math.max(prev - 1, 0));
+      }
+    }
+  };
+
   const ActiveComponent = sections[activeSection];
 
   return (
-    <Layout activeSection={activeSection} scrollToSection={setActiveSection}>
-      <AnimatePresence mode="wait">
-        <Section id={activeSection}>
-          <ActiveComponent />
-        </Section>
-      </AnimatePresence>
-    </Layout>
+    <div onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd} className="h-screen w-full">
+      <Layout activeSection={activeSection} scrollToSection={setActiveSection}>
+        <AnimatePresence mode="wait">
+          <Section id={activeSection}>
+            <ActiveComponent />
+          </Section>
+        </AnimatePresence>
+      </Layout>
+    </div>
   );
 }
 

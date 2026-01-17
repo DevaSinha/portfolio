@@ -23,6 +23,11 @@ const GlassCard = ({
             transition={{ duration: 0.5, ease: "easeOut" }}
             whileHover={hoverEffect ? { y: -8 } : undefined}
             {...props}
+            style={{
+                willChange: "transform",
+                transform: "translateZ(0)",
+                backfaceVisibility: "hidden"
+            }}
             className={`${baseStyles} ${hoverStyles} ${className}`}
         >
             {children}

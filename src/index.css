@@ -43,3 +43,8 @@ body {
 .animate-fade-slide {
   animation: fadeSlideIn 0.6s ease-out forwards;
 }
+
+.mobile-card-stack,
+.mobile-card-stack * {
+  touch-action: pan-y !important;
+}
