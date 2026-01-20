@@ -1,9 +1,11 @@
 import { FaJava, FaReact, FaDocker, FaGitAlt, FaLock, FaUserShield } from 'react-icons/fa';
 import { FaGolang } from 'react-icons/fa6';
-import { SiTypescript, SiPostgresql, SiSpringboot, SiApachekafka } from 'react-icons/si';
+import { SiTypescript, SiPostgresql, SiSpringboot, SiApachekafka, SiMysql } from 'react-icons/si';
 import { MdMiscellaneousServices } from "react-icons/md";
 import { IoIosInfinite } from "react-icons/io";
 import { TbApi } from 'react-icons/tb';
+import { LuGlassWater } from 'react-icons/lu';
+import { RiNextjsLine } from 'react-icons/ri';
 
 export const SOCIAL_LINKS = {
     github: "https://github.com/DevaSinha",
@@ -36,7 +38,8 @@ export const SKILL_CATEGORIES = [
             { name: "Java", icon: <FaJava /> },
             { name: "Go", icon: <FaGolang /> },
             { name: "TypeScript", icon: <SiTypescript /> },
-            { name: "PostgreSQL", icon: <SiPostgresql /> }
+            { name: "PostgreSQL", icon: <SiPostgresql /> },
+            { name: "MySql", icon: <SiMysql /> }
         ]
     },
     {
@@ -44,6 +47,8 @@ export const SKILL_CATEGORIES = [
         skills: [
             { name: "React.js", icon: <FaReact /> },
             { name: "Spring Boot", icon: <SiSpringboot /> },
+            { name: "Next.js", icon: <RiNextjsLine /> },
+            { name: 'Gin', icon: <LuGlassWater /> },
             { name: "REST APIs", icon: <TbApi /> }
         ]
     },
@@ -66,22 +71,17 @@ export const PROJECTS = [
         title: "StreamSight",
         description: "Real-time RTSP streaming application. Modular Go backend for stream management & WebSocket communication. React frontend with live preview.",
         tech: ["Go", "Docker", "Next.js", "PostgreSQL", "WebSocket"],
-        links: { github: "https://github.com/DevaSinha/StreamSight" },
-        featured: true,
+        links: { github: "https://github.com/DevaSinha/StreamSight", website: "https://featureflag-dashboard.vercel.app/" },
         inProgress: true
     },
     {
         title: "Loan Management System",
         description: "Scaled loan processing to handle 10,000+ new records monthly. Designed 99.9% uptime event-driven architecture.",
         tech: ["Spring Boot", "PostgreSQL", "Kafka", "React.js"],
-        links: {},
-        featured: false
     },
     {
         title: "Payment System",
         description: "Engineered transaction processing operations with auto-retry logic. Reduced failure recovery time by 50%.",
         tech: ["Spring Boot", "PostgreSQL", "React.js", "REST APIs"],
-        links: {},
-        featured: false
     }
 ];
