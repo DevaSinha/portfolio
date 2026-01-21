@@ -17,7 +17,7 @@ type BlurProps = WithAsChild<
     blur?: number;
     ref?: React.Ref<HTMLElement>;
   } & UseIsInViewOptions &
-    HTMLMotionProps<'div'>
+  HTMLMotionProps<'div'>
 >;
 
 function Blur({
@@ -50,8 +50,14 @@ function Blur({
       animate={isInView ? 'visible' : 'hidden'}
       exit="hidden"
       variants={{
-        hidden: { filter: `blur(${initialBlur}px)` },
-        visible: { filter: `blur(${blur}px)` },
+        hidden: { filter: `blur(${initialBlur}px)`, opacity: 0 },
+        visible: {
+          filter: `blur(${blur}px)`,
+          opacity: 1,
+          transitionEnd: {
+            filter: blur === 0 ? "none" : `blur(${blur}px)`,
+          },
+        },
       }}
       transition={{
         ...transition,

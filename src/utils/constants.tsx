@@ -69,6 +69,7 @@ export const SKILL_CATEGORIES = [
 export const PROJECTS = [
     {
         title: "StreamSight",
+        tagline: "Real-time AI Surveillance System",
         description: "Real-time RTSP streaming application. Modular Go backend for stream management & WebSocket communication. React frontend with live preview.",
         tech: ["Go", "Docker", "Next.js", "PostgreSQL", "WebSocket"],
         links: { github: "https://github.com/DevaSinha/StreamSight", website: "https://featureflag-dashboard.vercel.app/" },
@@ -76,11 +77,13 @@ export const PROJECTS = [
     },
     {
         title: "Loan Management System",
+        tagline: "High-Scale Financial Processing Engine",
         description: "Scaled loan processing to handle 10,000+ new records monthly. Designed 99.9% uptime event-driven architecture.",
         tech: ["Spring Boot", "PostgreSQL", "Kafka", "React.js"],
     },
     {
         title: "Payment System",
+        tagline: "Fault-Tolerant Transaction Platform",
         description: "Engineered transaction processing operations with auto-retry logic. Reduced failure recovery time by 50%.",
         tech: ["Spring Boot", "PostgreSQL", "React.js", "REST APIs"],
     }
