@@ -1,7 +1,7 @@
 import { SKILL_CATEGORIES } from '../utils/constants';
 import SectionHeader from './common/SectionHeader';
-import { MotionCarousel } from './common/MotionCarousel';
-import { FlipCard } from '@/components/animate-ui/components/community/flip-card';
+import { SkillCarousel } from './common/SkillCarousel';
+import { SkillFlipCard } from './common/SkillFlipCard';
 import { Blur } from '@/components/animate-ui/primitives/effects/blur';
 
 const Skills = () => {
@@ -13,10 +13,10 @@ const Skills = () => {
             <div className="hidden md:grid grid-cols-3 gap-6">
                 {SKILL_CATEGORIES.map((category, index) => (
                     <Blur key={index} delay={index * 100} initialBlur={10}>
-                        <FlipCard
+                        <SkillFlipCard
                             className="h-[320px]"
-                            front={
-                                <div className="h-full w-full rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm flex flex-col p-6">
+                            frontContent={
+                                <div className="p-6 h-full flex flex-col">
                                     <h3 className="text-xl font-bold text-secondary mb-4 border-b border-white/10 pb-2">
                                         {category.title}
                                     </h3>
@@ -26,12 +26,12 @@ const Skills = () => {
                                         </div>
                                     </div>
                                     <p className="text-xs text-textLight/60 text-center mt-auto">
-                                        Hover to see skills
+                                        Hover
                                     </p>
                                 </div>
                             }
-                            back={
-                                <div className="h-full w-full rounded-xl border border-secondary/30 bg-secondary/5 backdrop-blur-sm flex flex-col p-6 overflow-y-auto">
+                            backContent={
+                                <div className="p-6 h-full flex flex-col overflow-y-auto">
                                     <h3 className="text-lg font-bold text-textLight mb-4 border-b border-secondary/20 pb-2">
                                         {category.title}
                                     </h3>
@@ -58,17 +58,13 @@ const Skills = () => {
             {/* Mobile Carousel with Flip Cards */}
             <div className="md:hidden">
                 <Blur initialBlur={8} delay={100}>
-                    <MotionCarousel
-                        flexBasis={{ base: '85%' }}
-                        dotSize={{ active: 20, inactive: 6 }}
-                    >
+                    <SkillCarousel>
                         {SKILL_CATEGORIES.map((category, index) => (
-                            <FlipCard
+                            <SkillFlipCard
                                 key={index}
-                                interaction="click"
                                 className="h-[350px]"
-                                front={
-                                    <div className="h-full w-full rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm flex flex-col p-6">
+                                frontContent={
+                                    <div className="p-6 h-full flex flex-col">
                                         <h3 className="text-xl font-bold text-secondary mb-4 border-b border-white/10 pb-2 text-center">
                                             {category.title}
                                         </h3>
@@ -78,12 +74,12 @@ const Skills = () => {
                                             </div>
                                         </div>
                                         <p className="text-xs text-textLight/60 text-center mt-auto">
-                                            Tap to see skills
+                                            Tap
                                         </p>
                                     </div>
                                 }
-                                back={
-                                    <div className="h-full w-full rounded-xl border border-secondary/30 bg-secondary/5 backdrop-blur-sm flex flex-col p-6 overflow-y-auto">
+                                backContent={
+                                    <div className="p-6 h-full flex flex-col overflow-y-auto">
                                         <h3 className="text-lg font-bold text-textLight mb-4 border-b border-secondary/20 pb-2 text-center">
                                             {category.title}
                                         </h3>
@@ -104,7 +100,7 @@ const Skills = () => {
                                 }
                             />
                         ))}
-                    </MotionCarousel>
+                    </SkillCarousel>
                 </Blur>
             </div>
         </div>
