@@ -60,7 +60,7 @@ const Projects = () => {
                                         </Button>
                                     </Blur>
 
-                                    <Blur delay={600} initialBlur={8}>
+                                    {project.links.website && <Blur delay={600} initialBlur={8}>
                                         <Button asChild hoverScale={1.1} tapScale={0.98}>
                                             <a
                                                 href={project.links.website}
@@ -71,7 +71,7 @@ const Projects = () => {
                                                 <LuExternalLink size={24} />
                                             </a>
                                         </Button>
-                                    </Blur>
+                                    </Blur>}
                                 </div>
                             )}
                         </div>

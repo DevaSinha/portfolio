@@ -72,10 +72,19 @@ export const PROJECTS = [
         description: "High-performance feature toggling platform with <10ms evaluation latency. Built a multi-tenant Go backend and a type-safe TypeScript SDK with local caching.",
         tech: ["Go", "Next.js", "PostgreSQL", "Redis", "Docker"],
         links: {
-            github: "https://github.com/DevaSinha/Flagship", // Update if your repo name differs
+            github: "https://github.com/DevaSinha/featureflag-sdk", // Update if your repo name differs
             website: "https://featureflag-dashboard.vercel.app/"
         },
         inProgress: false
+    },
+    {
+        title: "StreamSight",
+        description: "Real-time analytics engine processing high-throughput data streams with sub-second latency. Built using a microservices architecture to provide actionable insights via live dashboards.",
+        tech: ["Go", "Apache Kafka", "Redis", "Next.js", "InfluxDB"],
+        links: {
+            github: "https://github.com/DevaSinha/StreamSight",
+        },
+        inProgress: true
     },
     {
         title: "Loan Management System",
