@@ -1,5 +1,4 @@
 import { motion } from 'motion/react';
-import { Blur } from '@/components/animate-ui/primitives/effects/blur';
 
 interface SectionHeaderProps {
     title: string;
@@ -8,20 +7,22 @@ interface SectionHeaderProps {
 
 const SectionHeader = ({ title, className = "" }: SectionHeaderProps) => {
     return (
-        <Blur
-            initialBlur={8}
-            blur={0}
-            delay={100}
-            className={`flex items-center gap-4 mb-8 ${className}`}
-        >
-            <h2 className="text-3xl font-bold text-text">{title}</h2>
+        <div className={`flex items-center gap-4 mb-12 w-full max-w-2xl ${className}`}>
+            <motion.h2
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="text-3xl md:text-4xl font-bold text-gray-100 whitespace-nowrap"
+            >
+                {title}
+            </motion.h2>
             <motion.div
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
-                className="h-[1px] bg-gradient-to-r from-textLight/50 to-transparent w-64 md:w-80 origin-left"
+                initial={{ opacity: 0, scaleX: 0 }}
+                whileInView={{ opacity: 1, scaleX: 1 }}
+                viewport={{ once: true }}
+                className="h-[1px] bg-gray-700 flex-grow max-w-[300px] origin-left"
             />
-        </Blur>
+        </div>
     );
 };
 

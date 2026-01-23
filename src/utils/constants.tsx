@@ -68,7 +68,7 @@ export const SKILL_CATEGORIES = [
 
 export const PROJECTS = [
     {
-        title: "Flagship — Feature Management",
+        title: "Flagship",
         description: "High-performance feature toggling platform with <10ms evaluation latency. Built a multi-tenant Go backend and a type-safe TypeScript SDK with local caching.",
         tech: ["Go", "Next.js", "PostgreSQL", "Redis", "Docker"],
         links: {
