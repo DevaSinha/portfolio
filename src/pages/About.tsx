@@ -1,8 +1,8 @@
-import { motion } from 'motion/react';
-import { LuDownload } from 'react-icons/lu';
-import DecryptedText from '../components/common/DecryptedText';
-import { RESUME } from '../utils/resume';
-import { downloadDocument } from '../utils/downloadDocument';
+import { motion } from "motion/react";
+import { LuDownload } from "react-icons/lu";
+import DecryptedText from "../components/common/DecryptedText";
+import { RESUME } from "../utils/resume";
+import { downloadDocument } from "../utils/downloadDocument";
 
 const About = () => {
     const handleDownload = () => {

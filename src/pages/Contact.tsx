@@ -2,9 +2,8 @@ import { SOCIAL_LINKS } from "@/utils/constants";
 import { Mail, MapPin, Phone, ArrowRight } from "lucide-react";
 
 const Contact = () => {
-
     return (
-        <section className="w-full min-h-screen flex items-center justify-center px-4 py-20">
+        <section className="w-full min-h-screen flex items-center justify-center px-4 pb-20">
             <div className="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 items-center">
                 <div>
                     <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
@@ -32,13 +31,14 @@ const Contact = () => {
                         <span className="relative">Say Hello</span>
                         <ArrowRight className="relative w-4 h-4" />
                     </a>
-
                 </div>
 
                 <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md p-6 sm:p-8 space-y-5">
                     <div className="flex items-center gap-3 text-white/80">
                         <MapPin className="w-5 h-5 text-white/60" />
-                        <span className="text-sm sm:text-base">Pune, Maharashtra, India</span>
+                        <span className="text-sm sm:text-base">
+                            Pune, Maharashtra, India
+                        </span>
                     </div>
 
                     <div className="flex items-center gap-3 text-white/80">

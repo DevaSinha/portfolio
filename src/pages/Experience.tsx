@@ -1,38 +1,38 @@
-import { motion } from 'motion/react';
-import { useState, useEffect } from 'react';
-import SectionHeader from '../components/common/SectionHeader';
-import TiltedCard from '../components/common/TiltCard';
-import { EXPERIENCES } from '../utils/constants';
+import { motion } from "motion/react";
+import { useState, useEffect } from "react";
+import SectionHeader from "../components/common/SectionHeader";
+import TiltedCard from "../components/common/TiltCard";
+import { EXPERIENCES } from "../utils/constants";
 
 const Experience = () => {
     // Soft, glowing dark gradient background
     const cardBg = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 800 400'%3E%3Cdefs%3E%3CradialGradient id='g' cx='50%25' cy='50%25' r='50%25'%3E%3Cstop offset='0%25' stop-color='%2322d3ee' stop-opacity='0.15'/%3E%3Cstop offset='100%25' stop-color='transparent'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='%23050505'/%3E%3Crect width='100%25' height='100%25' fill='url(%23g)'/%3E%3C/svg%3E`;
 
-    const [cardHeight, setCardHeight] = useState('350px');
+    const [cardHeight, setCardHeight] = useState("350px");
 
     useEffect(() => {
         const handleResize = () => {
             // Adjust height based on content length or screen width
             // Mobile (sm) needs more vertical space as text wraps
             if (window.innerWidth < 768) {
-                setCardHeight('550px');
+                setCardHeight("550px");
             } else {
-                setCardHeight('350px');
+                setCardHeight("350px");
             }
         };
 
         // Initial setup
         handleResize();
 
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
     }, []);
 
     return (
-        <div className="w-full min-h-screen flex flex-col items-center py-20 px-4">
+        <div className="w-full min-h-screen flex flex-col items-center py-10 px-4">
             <SectionHeader title="Experience" />
 
-            <div className="w-full max-w-5xl flex flex-col gap-12 mt-12">
+            <div className="w-full max-w-5xl flex flex-col gap-12 mt-6">
                 {EXPERIENCES.map((exp, index) => (
                     <motion.div
                         key={index}
@@ -73,7 +73,10 @@ const Experience = () => {
 
                                     <ul className="space-y-2.5">
                                         {exp.points.map((point, i) => (
-                                            <li key={i} className="text-gray-300 text-sm md:text-base leading-relaxed pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:rounded-full before:bg-cyan-500/50">
+                                            <li
+                                                key={i}
+                                                className="text-gray-300 text-sm md:text-base leading-relaxed pl-4 relative before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-1.5 before:rounded-full before:bg-cyan-500/50"
+                                            >
                                                 {point}
                                             </li>
                                         ))}

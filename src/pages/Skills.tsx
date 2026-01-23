@@ -48,7 +48,7 @@ const Skills = () => {
         ));
 
     return (
-        <div className="w-full min-h-screen flex flex-col items-center pt-24 lg:pt-16 pb-20 px-4">
+        <div className="w-full min-h-screen flex flex-col items-center pt-12 lg:pt-8 pb-20 px-4">
             <SectionHeader title="Skills" />
 
             <div className="w-full max-w-7xl">
