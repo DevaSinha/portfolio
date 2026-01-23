@@ -1,5 +1,6 @@
 import Navbar, { PillNavItem } from "./common/Navbar"; // Using default export as 'Navbar' (it was exported as PillNav)
 import StaggeredMenu from "./common/Menu";
+import { SOCIAL_ARRAY } from "@/utils/constants";
 
 interface LayoutProps {
     children: React.ReactNode;
@@ -39,6 +40,8 @@ const Layout = ({ children }: LayoutProps) => {
                     accentColor="#64ffda"
                     menuButtonColor="#ffffff"
                     openMenuButtonColor="#ffffff"
+                    displaySocials
+                    socialItems={SOCIAL_ARRAY}
                 />
             </div>
 

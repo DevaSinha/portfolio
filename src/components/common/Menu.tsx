@@ -10,6 +10,7 @@ export interface StaggeredMenuItem {
 export interface StaggeredMenuSocialItem {
     label: string;
     link: string;
+    icon: React.ReactElement;
 }
 export interface StaggeredMenuProps {
     position?: "left" | "right";
@@ -35,7 +36,6 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     items = [],
     socialItems = [],
     displaySocials = true,
-    displayItemNumbering = true,
     className,
     menuButtonColor = "#fff",
     openMenuButtonColor = "#fff",
@@ -539,18 +539,17 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                 >
                     <div className="sm-panel-inner flex-1 flex flex-col gap-5">
                         <ul
-                            className="sm-panel-list list-none m-0 p-0 flex flex-col gap-2"
+                            className="sm-panel-list list-none m-0 p-0 flex flex-col gap-2 divide-y divide-white/20"
                             role="list"
-                            data-numbering={displayItemNumbering || undefined}
                         >
                             {items && items.length ? (
                                 items.map((it, idx) => (
                                     <li
-                                        className="sm-panel-itemWrap relative overflow-hidden leading-none"
+                                        className="sm-panel-itemWrap relative overflow-hidden leading-none py-3"
                                         key={it.label + idx}
                                     >
                                         <Link
-                                            className="sm-panel-item relative text-black font-semibold text-[4rem] cursor-pointer leading-none tracking-[-2px] uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline pr-[1.4em]"
+                                            className="sm-panel-item relative text-white font-semibold text-[4rem] cursor-pointer leading-none tracking-[-2px] uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline pr-[1.4em]"
                                             to={it.link}
                                             aria-label={it.ariaLabel}
                                             data-index={idx + 1}
@@ -564,10 +563,10 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                                 ))
                             ) : (
                                 <li
-                                    className="sm-panel-itemWrap relative overflow-hidden leading-none"
+                                    className="sm-panel-itemWrap relative overflow-hidden leading-none py-3"
                                     aria-hidden="true"
                                 >
-                                    <span className="sm-panel-item relative text-black font-semibold text-[4rem] cursor-pointer leading-none tracking-[-2px] uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline pr-[1.4em]">
+                                    <span className="sm-panel-item relative text-white font-semibold text-[4rem] cursor-pointer leading-none tracking-[-2px] uppercase inline-block no-underline pr-[1.4em]">
                                         <span className="sm-panel-itemLabel inline-block [transform-origin:50%_100%] will-change-transform">
                                             No items
                                         </span>
@@ -597,7 +596,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                                                 rel="noopener noreferrer"
                                                 className="sm-socials-link text-[1.2rem] font-medium text-[#111] no-underline relative inline-block py-[2px] transition-[color,opacity] duration-300 ease-linear"
                                             >
-                                                {s.label}
+                                                {s.icon}
                                             </Link>
                                         </li>
                                     ))}

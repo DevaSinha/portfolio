@@ -5,6 +5,8 @@ import {
     FaGitAlt,
     FaLock,
     FaUserShield,
+    FaGithub,
+    FaLinkedin,
 } from "react-icons/fa";
 import { FaGolang } from "react-icons/fa6";
 import {
@@ -25,6 +27,19 @@ export const SOCIAL_LINKS = {
     linkedin: "https://www.linkedin.com/in/devanshu-sinha-69136519b/",
     email: "devasinha1703@gmail.com",
 };
+
+export const SOCIAL_ARRAY = [
+    {
+        label: "github",
+        link: "https://github.com/DevaSinha",
+        icon: <FaGithub color="white" />,
+    },
+    {
+        label: "linkedin",
+        link: "https://www.linkedin.com/in/devanshu-sinha-69136519b/",
+        icon: <FaLinkedin color="white" />,
+    },
+];
 
 export const NAV_ITEMS = ["About", "Experience", "Skills", "Projects", "Contact"];
 
