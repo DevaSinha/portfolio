@@ -1,40 +1,26 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
-import { NAV_ITEMS } from '../../utils/constants';
 import { cn } from '@/lib/utils';
+import { NAV_ITEMS } from '@/utils/constants';
+import { useActiveSection } from '@/hooks/useActiveSection';
+import { Menu, X } from 'lucide-react';
+
 
 export const Navbar = () => {
-    const [isScrolled, setIsScrolled] = useState(false);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [activeSection, setActiveSection] = useState('');
+    const [isOpen, setIsOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+    const activeSection = useActiveSection(NAV_ITEMS.map((item) => item.toLowerCase()));
 
     useEffect(() => {
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50);
-
-            const sections = NAV_ITEMS.map(item => item.toLowerCase());
-            const scrollPosition = window.scrollY + 100;
-
-            for (const section of sections) {
-                const element = document.getElementById(section);
-                if (element) {
-                    const offsetTop = element.offsetTop;
-                    const offsetHeight = element.offsetHeight;
-                    if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-                        setActiveSection(section);
-                    }
-                }
-            }
+            setScrolled(window.scrollY > 20);
         };
-
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const handleNavClick = (sectionId: string) => {
-        setIsMobileMenuOpen(false);
-        const element = document.getElementById(sectionId);
+    const scrollToSection = (id: string) => {
+        setIsOpen(false);
+        const element = document.getElementById(id);
         if (element) {
             const offset = 80;
             const bodyRect = document.body.getBoundingClientRect().top;
@@ -44,79 +30,78 @@ export const Navbar = () => {
 
             window.scrollTo({
                 top: offsetPosition,
-                behavior: 'smooth'
+                behavior: 'smooth',
             });
         }
     };
 
+
     return (
-        <>
-            <header
+        <header
+            className={cn(
+                'fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-background border-b border-white/5',
+                scrolled ? 'h-16 shadow-md' : 'h-20'
+            )}
+        >
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
+                {/* Logo */}
+                <button
+                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                    className="text-2xl font-bold tracking-tighter hover:text-primary transition-colors"
+                >
+                    Devanshu Sinha
+                </button>
+
+                {/* Desktop Nav */}
+                <nav className="hidden md:flex items-center gap-8">
+                    <ul className="flex items-center gap-6">
+                        {NAV_ITEMS.map((item) => {
+                            const id = item.toLowerCase();
+                            const isActive = activeSection === id;
+                            return (
+                                <li key={item}>
+                                    <button
+                                        onClick={() => scrollToSection(id)}
+                                        className={cn(
+                                            'text-sm font-medium transition-colors hover:text-primary',
+                                            isActive ? 'text-primary' : 'text-muted-foreground'
+                                        )}
+                                    >
+                                        {item}
+                                    </button>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </nav>
+
+                {/* Mobile Menu Button */}
+                <button
+                    className="md:hidden p-2 text-foreground"
+                    onClick={() => setIsOpen(!isOpen)}
+                    aria-label="Toggle menu"
+                >
+                    {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                </button>
+            </div>
+
+            {/* Mobile Nav Overlay */}
+            <div
                 className={cn(
-                    "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-                    isScrolled ? "bg-black/50 backdrop-blur-md border-b border-white/10" : "bg-transparent"
+                    'absolute top-full left-0 w-full bg-background border-b border-white/5 md:hidden flex-col items-center py-6 space-y-4 transition-all duration-300 ease-in-out origin-top shadow-xl',
+                    isOpen ? 'flex opacity-100 scale-y-100' : 'hidden opacity-0 scale-y-0'
                 )}
             >
-                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                    <div className="flex h-16 items-center justify-between">
-                        <div
-                            className="text-xl font-bold font-mono tracking-tighter cursor-pointer text-primary"
-                            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                        >
-                            &lt;Devanshu Sinha/&gt;
-                        </div>
-
-                        <nav className="hidden md:flex items-center gap-8">
-                            {NAV_ITEMS.map((item) => (
-                                <button
-                                    key={item}
-                                    onClick={() => handleNavClick(item.toLowerCase())}
-                                    className={cn(
-                                        "text-sm font-medium transition-colors hover:text-primary",
-                                        activeSection === item.toLowerCase() ? "text-primary" : "text-muted"
-                                    )}
-                                >
-                                    {item}
-                                </button>
-                            ))}
-                        </nav>
-
-                        <button
-                            className="md:hidden text-white p-2"
-                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                            aria-label="Toggle menu"
-                        >
-                            {isMobileMenuOpen ? <X /> : <Menu />}
-                        </button>
-                    </div>
-                </div>
-            </header>
-
-            <AnimatePresence>
-                {isMobileMenuOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        className="fixed inset-0 z-40 bg-black pt-20 px-4 md:hidden"
+                {NAV_ITEMS.map((item) => (
+                    <button
+                        key={item}
+                        onClick={() => scrollToSection(item.toLowerCase())}
+                        className="text-lg font-medium text-muted-foreground hover:text-primary transition-colors"
                     >
-                        <nav className="flex flex-col gap-6 items-center">
-                            {NAV_ITEMS.map((item) => (
-                                <button
-                                    key={item}
-                                    onClick={() => handleNavClick(item.toLowerCase())}
-                                    className={cn(
-                                        "text-lg font-medium transition-colors hover:text-primary",
-                                        activeSection === item.toLowerCase() ? "text-primary" : "text-muted"
-                                    )}
-                                >
-                                    {item}
-                                </button>
-                            ))}
-                        </nav>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </>
+                        {item}
+                    </button>
+                ))}
+            </div>
+        </header>
     );
 };

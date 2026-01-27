@@ -1,25 +1,63 @@
 @import "tailwindcss";
 
 @theme {
-    --color-background: #0a0a0a;
-    --color-surface: #111111;
-    --color-primary: #22d3ee;
-    --color-secondary: #64ffda;
-    --color-muted: #8892b0;
-    --color-text: #ccd6f6;
+    --color-background: hsl(240 10% 3.9%);
+    --color-foreground: hsl(0 0% 98%);
 
-    --font-sans: 'Inter', sans-serif;
-    --font-mono: 'Fira Code', monospace;
+    --color-card: hsl(240 10% 5.5%);
+    --color-card-foreground: hsl(0 0% 98%);
 
-    --image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
+    --color-popover: hsl(240 10% 5.5%);
+    --color-popover-foreground: hsl(0 0% 98%);
+
+    --color-primary: hsl(252 59% 48%);
+    --color-primary-foreground: hsl(0 0% 98%);
+
+    --color-secondary: hsl(240 4.8% 95.9%);
+    --color-secondary-foreground: hsl(240 5.9% 10%);
+
+    --color-muted: hsl(240 3.7% 15.9%);
+    --color-muted-foreground: hsl(240 5% 64.9%);
+
+    --color-accent: hsl(240 3.7% 15.9%);
+    --color-accent-foreground: hsl(0 0% 98%);
+
+    --color-destructive: hsl(0 62.8% 30.6%);
+    --color-destructive-foreground: hsl(0 0% 98%);
+
+    --color-border: hsl(240 3.7% 15.9%);
+    --color-input: hsl(240 3.7% 15.9%);
+    --color-ring: hsl(240 4.9% 83.9%);
+
+    --radius: 0.75rem;
 }
 
 @layer base {
-    html {
-        scroll-behavior: smooth;
+
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-border, currentColor);
     }
 
     body {
-        @apply bg-background text-text antialiased;
+        @apply bg-background text-foreground antialiased;
+        font-feature-settings: "rlig" 1, "calt" 1;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+@layer utilities {
+    .text-balance {
+        text-wrap: balance;
+    }
+
+    .section-padding {
+        @apply py-6 md:py-10;
     }
 }

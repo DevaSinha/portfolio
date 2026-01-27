@@ -1,23 +1,27 @@
-import React from 'react';
 import { cn } from '@/lib/utils';
+import React from 'react';
 import { Container } from './Container';
 
 interface SectionProps extends React.HTMLAttributes<HTMLElement> {
-    id?: string;
     children: React.ReactNode;
-    className?: string;
+    id?: string;
+    containerClassName?: string;
 }
 
-export const Section: React.FC<SectionProps> = ({ id, children, className, ...props }) => {
+export const Section: React.FC<SectionProps> = ({
+    children,
+    className,
+    containerClassName,
+    id,
+    ...props
+}) => {
     return (
         <section
             id={id}
-            className={cn("py-12 md:py-16", className)}
+            className={cn('section-padding relative overflow-hidden', className)}
             {...props}
         >
-            <Container>
-                {children}
-            </Container>
+            <Container className={containerClassName}>{children}</Container>
         </section>
     );
 };

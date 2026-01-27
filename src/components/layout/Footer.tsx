@@ -1,40 +1,47 @@
-import { SOCIAL_LINKS } from '../../utils/constants';
-import { Container } from '../ui/Container';
+import { Container } from '@/components/ui/Container';
+import { SOCIAL_LINKS } from '@/utils/constants';
 import { FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa';
 
 export const Footer = () => {
+    const currentYear = new Date().getFullYear();
+
     return (
-        <footer className="border-t border-white/10 bg-black py-12">
-            <Container className="flex flex-col items-center justify-between gap-6 md:flex-row">
-                <div className="text-muted text-sm">
-                    © {new Date().getFullYear()} Devanshu Sinha. All rights reserved.
+        <footer className="border-t border-white/5 bg-background/50 backdrop-blur-sm py-12">
+            <Container className="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div className="flex flex-col gap-2 items-center md:items-start">
+                    <p className="text-sm text-muted-foreground">
+                        &copy; {currentYear} Devanshu Sinha. All rights reserved.
+                    </p>
+                    <p className="text-xs text-muted-foreground/50">
+                        Built with React, TypeScript & Tailwind CSS
+                    </p>
                 </div>
 
-                <div className="flex gap-6">
+                <div className="flex items-center gap-6">
                     <a
                         href={SOCIAL_LINKS.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-muted hover:text-primary transition-colors text-xl"
+                        className="text-muted-foreground hover:text-primary transition-colors"
                         aria-label="GitHub"
                     >
-                        <FaGithub />
+                        <FaGithub className="w-5 h-5" />
                     </a>
                     <a
                         href={SOCIAL_LINKS.linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-muted hover:text-primary transition-colors text-xl"
+                        className="text-muted-foreground hover:text-primary transition-colors"
                         aria-label="LinkedIn"
                     >
-                        <FaLinkedin />
+                        <FaLinkedin className="w-5 h-5" />
                     </a>
                     <a
                         href={`mailto:${SOCIAL_LINKS.email}`}
-                        className="text-muted hover:text-primary transition-colors text-xl"
+                        className="text-muted-foreground hover:text-primary transition-colors"
                         aria-label="Email"
                     >
-                        <FaEnvelope />
+                        <FaEnvelope className="w-5 h-5" />
                     </a>
                 </div>
             </Container>
