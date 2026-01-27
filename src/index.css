@@ -1,25 +1,89 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #0a0a0a;
-  --color-surface: #111111;
-  --color-primary: #22d3ee;
-  --color-secondary: #64ffda;
-  --color-muted: #8892b0;
-  --color-text: #ccd6f6;
+    --color-background: #0a0a0a;
+    --color-surface: #111111;
+    --color-primary: #22d3ee;
+    --color-secondary: #64ffda;
+    --color-muted: #8892b0;
+    --color-text: #ccd6f6;
 
-  --font-sans: 'Inter', sans-serif;
-  --font-mono: 'Fira Code', monospace;
+    --font-sans: 'Inter', sans-serif;
+    --font-mono: 'Fira Code', monospace;
 
-  --image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
+    --image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
 }
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
+    html {
+        scroll-behavior: smooth;
+    }
 
-  body {
-    @apply bg-background text-text antialiased;
-  }
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+/* Staggered Menu Overrides */
+.sm-scope .staggered-menu-panel {
+    background: #111111 !important;
+    /* Dark theme match */
+    color: #ffffff !important;
+}
+
+.sm-scope .sm-panel-item {
+    color: #ffffff !important;
+    font-size: 2.5rem !important;
+    /* Smaller font for mobile */
+}
+
+/* Fix logo inversion since we are using dark bg */
+.sm-scope .staggered-menu-wrapper[data-open] .sm-logo-img {
+    filter: none !important;
+}
+
+/* Ensure close button is visible */
+.sm-scope .sm-toggle {
+    z-index: 50 !important;
+}
+
+/* Fix overlapping numbers - Style as superscript AFTER the text */
+.sm-scope .sm-panel-list[data-numbering] .sm-panel-item::after {
+    content: counter(smItem, decimal-leading-zero) ".";
+    position: relative !important;
+    right: auto !important;
+    top: auto !important;
+    margin-left: 0.5em !important;
+    font-size: 1rem !important;
+    color: #64ffda !important;
+    opacity: 1 !important;
+    pointer-events: none;
+    align-self: flex-start;
+    line-height: 1;
+}
+
+.sm-scope .sm-panel-itemWrap {
+    overflow: visible !important;
+}
+
+.sm-scope .sm-panel-item {
+    display: inline-flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    padding-right: 0 !important;
+    margin-right: 0 !important;
+    width: auto !important;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+
+.scrollbar-none {
+    scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar-thumb {
+    background: transparent;
 }
