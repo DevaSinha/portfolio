@@ -26,19 +26,6 @@ export const SOCIAL_LINKS = {
     email: "devasinha1703@gmail.com",
 };
 
-export const SOCIAL_ARRAY = [
-    {
-        label: "github",
-        link: "https://github.com/DevaSinha",
-        icon: <FaGithub color="white" />,
-    },
-    {
-        label: "linkedin",
-        link: "https://www.linkedin.com/in/devanshu-sinha-69136519b/",
-        icon: <FaLinkedin color="white" />,
-    },
-];
-
 export const NAV_ITEMS = ["About", "Experience", "Skills", "Projects", "Contact"];
 
 export const EXPERIENCES = [
@@ -78,7 +65,6 @@ export const SKILL_CATEGORIES = [
             { name: "REST APIs", icon: <TbApi /> },
             { name: "Kafka", icon: <SiApachekafka /> },
             { name: "Redis", icon: <SiRedis /> },
-            { name: "WebSockets", icon: <MdMiscellaneousServices /> },
         ],
     },
     {
